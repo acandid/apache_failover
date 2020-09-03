@@ -20,7 +20,7 @@ galaxy_info:
         - 9
     - name: Ubuntu
       versions:
-        - bullseye
+        - all
   galaxy_tags:
     - web
     - apache

@@ -20,7 +20,6 @@ galaxy_info:
         - 9
     - name: Ubuntu
       versions:
-        - bullseye/sid
         - 20.04
   galaxy_tags:
     - web

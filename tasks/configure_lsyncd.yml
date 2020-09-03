@@ -1,0 +1,31 @@
+---
+- name: Create Lsyncd config file RedHat family
+  template:
+    src: lsyncd.conf.j2
+    dest: /etc/lsyncd.conf
+  notify: restart_lsyncd
+  when: ansible_os_family == 'RedHat'
+#
+- block:
+    - name: Create lsyncd diretory Debian family
+      file:
+        path: "{{ item }}"
+        state: directory
+        recurse: yes
+      loop:
+        - /var/log/lsyncd
+        - /etc/lsyncd
+#
+    - name: Create Lsyncd config file Debian family
+      template:
+        src: lsyncd.conf.j2
+        dest: /etc/lsyncd/lsyncd.conf.lua
+      notify: restart_lsyncd
+  when: ansible_os_family == 'Debian'
+#
+- name: Enabled Lsyncd service
+  service:
+    name: "{{ apache_failover_lsync_srv }}"
+    state: started
+    enabled: yes
+...

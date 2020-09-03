@@ -1,0 +1,7 @@
+---
+- name: Create my test html index
+  copy:
+    content: "MY WEB SERVER IS UP\n"
+    dest: "{{ apache_failover_docroot }}/index.html"
+  when: inventory_hostname in groups['master']
+...

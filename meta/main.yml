@@ -1,0 +1,32 @@
+---
+dependencies: []
+
+galaxy_info:
+  role_name: apache_failover
+  author: acandid
+  description: Create web service Failover. Install and configuring the Apache, keepalived and lsyncd on RHEL/CentOS, Debian 10, Ubuntu 20.04
+  company: "ALmir Candido"
+  license: "license (BSD, MIT)"
+  min_ansible_version: 2.9
+  platforms:
+    - name: EL
+      versions:
+        - 7
+        - 8
+    - name: Debian
+      versions:
+        - buster
+        - 10
+        - 9
+    - name: Ubuntu
+      versions:
+        - bullseye/sid
+        - 20.04
+  galaxy_tags:
+    - web
+    - apache
+    - webserver
+    - html
+    - httpd
+
+allow_duplicates: true

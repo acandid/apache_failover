@@ -1,0 +1,13 @@
+---
+# defaults file for apache_failover
+#
+#Inform VIP IP Address
+apache_failover_vip_ip: '192.168.0.60/24'
+#
+# DocumentRoot
+apache_failover_docroot: /var/www/html
+#
+# Domain
+apache_failover_domain: almircandido.com
+#
+

@@ -1,0 +1,24 @@
+---
+- block:
+    - name: Install epel repository RedHat family
+      yum:
+        name: "{{ apache_failover_epel_repo }}"
+        state: present
+#
+    - name: Install Lsync packages RedHat family
+      yum:
+        name: "{{ apache_failover_lsync_pkg }}"
+        state: present
+      when: inventory_hostname in groups['master'] 
+#
+    - name: Install Web packages RedHat family
+      yum:
+        name: "{{ apache_failover_web_pkg }}"
+        state: present
+#
+    - name: Install Keepalived package RedHat family
+      yum:
+        name: "{{ apache_failover_keepalived_pgk }}"
+        state: present
+  when: ansible_os_family == 'RedHat'
+...

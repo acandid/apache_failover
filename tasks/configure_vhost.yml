@@ -1,0 +1,35 @@
+---
+- block:
+    - name: Configure Vhost http RedHat family
+      template:
+        src: vhost.conf.j2
+        dest: "{{ apache_failover_vhost_path }}{{ apache_failover_domain }}.conf"
+#
+    - name: Configure Vhost SSL RedHat family
+      template:
+        src: ssl_vhost.conf.j2
+        dest: "{{ apache_failover_vhost_path }}ssl.{{ apache_failover_domain }}.conf"
+  when: ansible_os_family == 'RedHat'
+#
+- block:
+    - name: Configure Vhost http Debian family
+      template:
+        src: vhost.conf.j2
+        dest: "{{ apache_failover_vhost_path }}{{ apache_failover_domain }}.conf"
+#
+    - name: Configure Vhost SSL Debian family
+      template:
+        src: ssl_vhost.conf.j2
+        dest: "{{ apache_failover_vhost_path }}ssl.{{ apache_failover_domain }}.conf"
+#
+    - name: Enable new vhost
+      command: "{{ item }}"
+      loop:
+        - a2ensite "{{ apache_failover_domain }}"
+        - a2ensite "ssl.{{ apache_failover_domain }}"
+        - a2enmod ssl
+      args:
+        warn: false
+      notify: restart_web
+  when: ansible_os_family == 'Debian'
+...

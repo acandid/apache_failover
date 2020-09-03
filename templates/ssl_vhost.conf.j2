@@ -1,0 +1,23 @@
+<VirtualHost *:443>
+  ServerName {{ apache_failover_domain }}
+  DocumentRoot {{ apache_failover_docroot }}
+
+  ErrorLog {{ apache_failover_errorlog }}{{ apache_failover_domain }}-error.log
+  CustomLog {{ apache_failover_customlog }}{{ apache_failover_domain }}-access.log combined
+
+  SSLEngine on
+  SSLCipherSuite AES256+EECDH:AES256+EDH
+  SSLProtocol All -SSLv2 -SSLv3
+  SSLHonorCipherOrder On
+  SSLCertificateFile {{ apache_failover_crt_path }}{{ apache_failover_domain }}.crt
+  SSLCertificateKeyFile {{ apache_failover_key_path }}{{ apache_failover_domain }}.key
+  SSLCertificateChainFile {{ apache_failover_ca_path }}{{ apache_failover_domain }}_ca.crt
+
+  <Directory {{ apache_failover_docroot }}>
+    AllowOverride All
+    Options -Indexes +FollowSymLinks
+    Require all granted
+  </Directory>
+
+
+</VirtualHost>

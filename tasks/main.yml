@@ -1,0 +1,35 @@
+---
+# tasks file for apache_failover
+#
+- name: Include Vars
+  include_vars: "{{ ansible_os_family }}.yml"
+#
+- name: Import task install_packages_rhel.yml
+  import_tasks: install_packages_rhel.yml
+  tags: install_pkg_rhel
+#
+- name: Import task install_packages_deb.yml
+  import_tasks: install_packages_deb.yml
+  tags: install_pkg_deb
+#
+- name: Import task configure_vhost.yml
+  import_tasks: configure_vhost.yml
+  tags: vhost
+#
+- name: Import task copy_certificates.yml
+  import_tasks: copy_certificates.yml
+  tags: certificates
+#
+- name: Import task create_html_index_test.yml
+  import_tasks: create_html_index_test.yml
+  tags: index
+#
+- name: Import task configure_lsyncd.yml
+  import_tasks: configure_lsyncd.yml
+  when: inventory_hostname in groups['master']
+  tags: lsync
+#
+- name: Import task configure_keepalived.yml
+  import_tasks: configure_keepalived.yml
+  tags: keepalived
+...

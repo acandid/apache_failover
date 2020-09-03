@@ -1,0 +1,22 @@
+---
+- name: Copy Certificate CRT
+  copy:
+    src: files/almircandido.com.crt
+    dest: "{{ apache_failover_crt_path }}{{ apache_failover_domain }}.crt"
+#
+- name: Copy Certificate KEY
+  copy:
+    src: files/almircandido.com.key
+    dest: "{{ apache_failover_key_path }}{{ apache_failover_domain }}.key"
+#
+- name: Copy Certificate CA
+  copy:
+    src: files/almircandido.com_ca
+    dest: "{{ apache_failover_ca_path }}{{ apache_failover_domain }}_ca.crt"
+#
+- name: Enabled Web service
+  service:
+    name: "{{ apache_failover_web_srv }}"
+    state: started
+    enabled: yes
+...

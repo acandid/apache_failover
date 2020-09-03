@@ -1,0 +1,36 @@
+---
+###
+apache_failover_epel_repo:
+  - epel-release
+#
+apache_failover_lsync_pkg:
+  - lua
+  - lua-devel
+  - pkgconfig
+  - gcc
+  - asciidoc
+  - lsyncd
+#
+apache_failover_web_pkg:
+  - httpd
+  - mod_ssl
+  - rsync
+#
+apache_failover_keepalived_pgk: keepalived
+#
+apache_failover_errorlog: "/var/log/httpd/"
+apache_failover_customlog: "/var/log/httpd/"
+#
+apache_failover_crt_path: /etc/pki/tls/certs/
+#
+apache_failover_key_path: /etc/pki/tls/private/
+#
+apache_failover_ca_path: /etc/pki/tls/certs/
+#
+apache_failover_vhost_path: /etc/httpd/conf.d/
+#
+apache_failover_web_srv: httpd
+#
+apache_failover_lsync_srv: lsyncd
+#
+apache_failover_keepalived_srv: keepalived                               

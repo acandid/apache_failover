@@ -1,0 +1,22 @@
+---
+- name: Configure systcl
+  sysctl:
+    name: net.ipv4.ip_nonlocal_bind
+    value: '1'
+    state: present
+  when: ansible_os_family == 'RedHat'
+#
+- name: Create keepalived file in server master
+  template:
+    src: keepalived.conf_master.j2
+    dest: /etc/keepalived/keepalived.conf
+  notify: restart_keepalived
+  when: inventory_hostname in groups['master']
+#
+- name: Create keepalived file in server standby
+  template:
+    src: keepalived.conf_backup.j2
+    dest: /etc/keepalived/keepalived.conf
+  notify: restart_keepalived
+  when: inventory_hostname in groups['standby']
+...

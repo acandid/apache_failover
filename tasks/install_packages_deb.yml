@@ -1,0 +1,22 @@
+---
+- block:
+    - name: Install Lsync packages Debian family
+      apt:
+        name: "{{ apache_failover_lsync_pkg }}"
+        state: present
+        force_apt_get: true
+      when: inventory_hostname in groups['master'] 
+#
+    - name: Install Web packages Debian family
+      apt:
+        name: "{{ apache_failover_web_pkg }}"
+        state: present
+        force_apt_get: true
+#
+    - name: Install Keepalived package Debian family
+      apt:
+        name: "{{ apache_failover_keepalived_pgk }}"
+        state: present
+        force_apt_get: true
+  when: ansible_os_family == 'Debian'
+#

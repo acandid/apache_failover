@@ -1,0 +1,21 @@
+---
+# handlers file for apache_failover
+#
+- name: restart_keepalived
+  service:
+    name: "{{ apache_failover_keepalived_srv }}"
+    state: restarted
+    enabled: yes
+#
+- name: restart_lsyncd
+  service:
+    name: "{{ apache_failover_lsync_srv }}"
+    state: restarted
+    enabled: yes
+#
+- name: restart_web
+  service:
+    name: "{{ apache_failover_web_srv }}"
+    state: restarted
+    enabled: yes
+...

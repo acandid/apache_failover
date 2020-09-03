@@ -1,0 +1,6 @@
+<VirtualHost *:80> 
+  ServerName {{ apache_failover_domain }}
+  ServerAlias www.{{ apache_failover_domain }}
+
+  Redirect permanent / https://{{ apache_failover_domain }}/
+</VirtualHost>

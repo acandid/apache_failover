@@ -1,0 +1,19 @@
+----
+-- User configuration file for lsyncd.
+--
+-- Simple example for default rsync.
+--
+settings {
+        logfile = "/var/log/lsyncd/lsyncd.log",
+        statusFile = "/var/log/lsyncd/lsyncd-status.log",
+        statusInterval = 20,
+}
+
+{% for host in groups['standby'] %}
+sync{
+        default.rsync,
+        source="{{ apache_failover_docroot }}",
+        target="{{ hostvars[host]['ansible_facts']['default_ipv4']['address'] }}:{{ apache_failover_docroot }}",
+        rsync={rsh ="/usr/bin/ssh -l root -i /root/.ssh/id_rsa",}
+}
+{% endfor %}

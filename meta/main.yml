@@ -20,7 +20,7 @@ galaxy_info:
         - 9
     - name: Ubuntu
       versions:
-        - all
+        - focal
   galaxy_tags:
     - web
     - apache

@@ -9,5 +9,3 @@ apache_failover_docroot: /var/www/html
 #
 # Domain
 apache_failover_domain: almircandido.com
-#
-
